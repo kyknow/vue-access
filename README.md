@@ -1,29 +1,56 @@
+
 # vue-access
 
-## Project setup
-```
-yarn install
+vue权限控制组件
+
+
+### Installation
+
+**Yarn**
+```bash
+yarn add vue-access
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
+**NPM**
+```bash
+npm install vue-access --save
 ```
 
-### Run your tests
-```
-yarn run test
+### Getting Started
+不含参数初始化方式
+```javascript
+import VueAccess from 'vue-access'
+import Vue from 'vue'
+
+Vue.use(VueAccess)
 ```
 
-### Lints and fixes files
-```
-yarn run lint
+包含参数初始化方式
+```javascript
+import VueAccess from 'vue-access'
+import Vue from 'vue'
+
+Vue.use(VueAccess, {
+  set(val) {
+    .....   //自定义实现写入权限列表
+  },
+  get() {
+    .....   //自定义实现获取权限列表
+  }
+})
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+API
+
+vue-access会在Vue的全局和实列里写入$access对象
+
+可通过Vue.$access 或者 this.$access获取
+```javascript
+//设置权限列表，默认写入$access._accessArr
+set(val: string[]): void
+
+//获取权限列表
+get(): string[]
+
+//判断权限是否存在
+hasAccess(access: string): boolean
