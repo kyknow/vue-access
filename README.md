@@ -54,3 +54,9 @@ get(): string[]
 
 //判断权限是否存在
 hasAccess(access: string): boolean
+```
+
+自定义指令v-access
+```html
+<components v-access="权限名称" />
+```
