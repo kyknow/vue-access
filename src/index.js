@@ -8,15 +8,16 @@ export default {
         }
         return this._accessArr ? this._accessArr : [];
       },
-      set(val) {
+      set(val, isAdmin=false) {
         if(opts.set) {
-          return opts.set(val)
+          return opts.set(val, isAdmin)
         }
         this._accessArr = val
+        this._isAdmin = isAdmin
       },
       hasAccess(path) {
         const accesses = this.get();
-        return pathHasAccess(accesses, path);
+        return this._isAdmin || pathHasAccess(accesses, path);
       }
     };
 
