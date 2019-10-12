@@ -23,9 +23,7 @@ export default {
 
     Vue.directive('access', {
       bind: (el, binding) => {
-        const path = binding.value;
-        const accesses = Vue.$access.get();
-        if (!pathHasAccess(accesses, path)) {
+        if (!Vue.$access.hasAccess(binding.value)) {
           el.parentNode.removeChild(el);
         }
       }
