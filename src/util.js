@@ -4,7 +4,7 @@ export const pathHasAccess = (accesses, path) => {
     if (r.includes(':')) {
       regExp = new RegExp(r.replace(/:\w+/g, '\\w+'));
     } else {
-      regExp = new RegExp(r);
+      regExp = new RegExp("^"+r);
     }
     if (regExp.test(path)) {
       return true;
